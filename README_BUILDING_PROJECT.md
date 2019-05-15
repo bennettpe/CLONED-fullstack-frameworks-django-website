@@ -2154,6 +2154,10 @@ This section is for setting up an **customer payment mechanism** to allow users 
 2. Have been advised to create another development enviroment before doint the required changes as would be easier then trying to backout changes.
 3. Need to workout how I take a clone of my enviroment ? , you can clone c9 workspace by clicking on the workspace in your dashboard and then click the `cloned` button 
    Remember to delete `.git` folder
-4. Then create a new github repository by doing the following
-    git init
-   
+4. Then create a new github repository and commit changes.
+5. Remove S3 links to `static` files, by changing `settings.py` file
+   Remove `storages,`
+   Remove `AWS_* parameters
+   Remove `STATICFILES_STORAGE` Parameter
+   Remove `AWS` keys from `env.py` file
+6. Create new django secret key using https://www.miniwebtool.com/django-secret-key-generator/
