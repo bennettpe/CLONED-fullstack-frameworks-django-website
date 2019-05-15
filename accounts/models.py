@@ -11,7 +11,7 @@ class UserProfile(models.Model):
 	#product_ratings = models.ForeignKey(UserRating) # Not sure if you actually need this
 	
 	def __str__(self):
-		return str(self.user)
+		return str(self.user.username)
 
 #Define SIGNALS so our User_Profile model will be automatically created/updated when User instances are.		
 @receiver(post_save, sender=User)
@@ -21,4 +21,4 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    instance.userprofile.save()

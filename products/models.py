@@ -17,6 +17,9 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     user_ratings = models.ManyToManyField(UserProfile, through='UserRating', related_name="ratings")
     
+    def __str__(self):
+        return '{}: {} - {}'.format(self.category, self.part_name, self.part_number)
+    
 # Ratings
 class UserRating(models.Model):
     class Meta:
@@ -29,4 +32,4 @@ class UserRating(models.Model):
        
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_ratings')
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='product_ratings')
-    rating = models.CharField(max_length=15, choices=rating_choices, null=True) 
+    rating = models.CharField(max_length=15, choices=rating_choices, null=True)

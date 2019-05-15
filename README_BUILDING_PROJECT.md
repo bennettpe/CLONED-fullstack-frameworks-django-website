@@ -2149,7 +2149,7 @@ This section is for setting up an **customer payment mechanism** to allow users 
     dump3 = json.dumps(chart3, cls=LazyEncoder)   
     ```
 
-#### Creating Rating for products
+#### Creating Rating for products (Clone C9 Workspace)
 1. Need to add `Rating for products` so my mentor has said I need to `Extend User Model` in django 
 2. Have been advised to create another development enviroment before doint the required changes as would be easier then trying to backout changes.
 3. Need to workout how I take a clone of my enviroment ? , you can clone c9 workspace by clicking on the workspace in your dashboard and then click the `cloned` button 
@@ -2161,3 +2161,84 @@ This section is for setting up an **customer payment mechanism** to allow users 
    Remove `STATICFILES_STORAGE` Parameter
    Remove `AWS` keys from `env.py` file
 6. Create new django secret key using https://www.miniwebtool.com/django-secret-key-generator/
+
+#### Creating Rating for products (part1)
+1. need to create two new models one for `UserProfile` and one for `UserRatings`
+   Relationship will be as follows 
+   Each User Profile can have many ratings , But each rating can only be associated with one User Profile and one Product item so to prevent a user from having 
+   two ratings for the same product item.
+2. `python3 manage.py makemigrations accounts`
+    ouput from bash terminal
+    ```python
+   ^Cbennettpe:~/workspace (master) $ python3 manage.py makemigrations accounts
+    Database URL not found. Using SQLite instead
+    Migrations for 'accounts':
+    accounts/migrations/0001_initial.py
+    - Create model UserProfile
+    ```
+3. `python3 manage.py migrate accounts`
+     ouput from bash terminal
+    ```python
+    bennettpe:~/workspace (master) $ python3 manage.py migrate accounts
+    Database URL not found. Using SQLite instead
+    Operations to perform:
+    Apply all migrations: accounts
+    Running migrations:
+     Applying accounts.0001_initial... OK
+    ```
+4. `python3 manage.py makemigrations products`
+    ouput from bash terminal
+    ```python
+    ^Cbennettpe:~/workspace (master) $ python3 manage.py makemigrations products
+    Database URL not found. Using SQLite instead
+    Migrations for 'products':
+    products/migrations/0002_auto_20190515_1415.py
+    - Create model UserRating
+    - Alter field category on product
+    - Alter field image on product
+    - Alter field vehicle_model on product
+    - Add field product to userrating
+    - Add field user_profile to userrating
+    - Add field user_ratings to product
+    - Alter unique_together for userrating (1 constraint(s))
+    ```
+5. `python3 manage.py migrate products`
+     ouput from bash terminal
+    ```python
+    bennettpe:~/workspace (master) $ python3 manage.py migrate products
+    Database URL not found. Using SQLite instead
+    Operations to perform:
+    Apply all migrations: products
+    Running migrations:
+    Applying products.0002_auto_20190515_1415... OK
+    ```
+
+#### Error User has no userprofile.
+1.  Tried logging into `admin` but got the following error message `User has no userprofile.` , problem is due to not having an user profile for existing users
+    so need to create manual for `admin` and then can login and fix other existing users thru the admin panel.
+2.  This can be done via the python shell as follows 
+    But anyway, to make the initial profile, just use `python manage.py shell`
+    And do `from django.contrib.auth.models import User, from accounts.models import UserProfile,` 
+    and then grab the admin user using `User.objects.get()`
+    and make a profile using it using `UserProfile.objects.create()`
+    You need to import the default user model, use it to get the admin user by their username and store that user in a variable, 
+    then use the variable to create the profile
+    Once you do that you can log in with the admin user and use it to create profiles for the rest of the accounts.
+3.  Another obvious option would be to just make another `superuser` and let your receiver create its profile and then you can login to the `admin`
+    with it and create the other profiles Then just delete the temporary superuser when you're done
+4.  Created superuser
+     ouput from bash terminal
+    ```python
+    ^Cbennettpe:~/workspace (master) $ python3 manage.py createsuperuser
+    Database URL not found. Using SQLite instead
+    Username (leave blank to use 'ubuntu'): admintemp
+    Email address: admintep@example.com
+    Password: 
+    Password (again): 
+    Superuser created successfully.
+    ```
+5.  Logging in using `admintemp` and added userprofile to existing users and the deleted `admintemp` userid.
+
+#### Creating Rating for products (part2)
+
+

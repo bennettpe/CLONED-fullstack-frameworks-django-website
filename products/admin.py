@@ -1,11 +1,12 @@
 from django.contrib import admin
 from .models import Product
+from .models import UserRating
 
 # ADD columns to Django Admin Model Pages
 # How to Add Columns to Django Admin Model Pages (Django Tutorial) | Part 38
 # https://www.youtube.com/watch?v=KqbvhPLGJwA&list=PLw02n0FEB3E3VSHjyYMcFadtQORvl1Ssj&index=38
 class ProductAdmin(admin.ModelAdmin):
-    list_display =('category','part_name', 'part_number')
+    list_display =('category','part_name','part_number')
     
     def user_info(self, obj):
         return obj.description
@@ -18,5 +19,10 @@ class ProductAdmin(admin.ModelAdmin):
         queryset = queryset.order_by('category', '-part_name', 'part_number')
         return queryset
 
+
+class UserRatingAdmin(admin.ModelAdmin):
+    list_display =('product','user_profile','rating')
+
 # Register your models here.
 admin.site.register(Product, ProductAdmin)
+admin.site.register(UserRating, UserRatingAdmin)
