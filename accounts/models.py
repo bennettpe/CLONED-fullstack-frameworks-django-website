@@ -8,7 +8,6 @@ from django.dispatch import receiver
 # USER PROFILE
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	#product_ratings = models.ForeignKey(UserRating) # Not sure if you actually need this
 	
 	def __str__(self):
 		return str(self.user.username)

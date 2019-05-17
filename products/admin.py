@@ -22,6 +22,16 @@ class ProductAdmin(admin.ModelAdmin):
 
 class UserRatingAdmin(admin.ModelAdmin):
     list_display =('product','user_profile','rating')
+    #ordering = ('-user_profile', 'rating', '-product',)
+    #list_filter =('rating',)
+    
+    def user_info(self, obj):
+        return obj.description
+    
+    def get_queryset(self, request):
+        queryset = super(UserRatingAdmin, self).get_queryset(request)
+        queryset = queryset.order_by('-product', '-user_profile', 'rating',)
+        return queryset
 
 # Register your models here.
 admin.site.register(Product, ProductAdmin)

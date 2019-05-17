@@ -2240,5 +2240,29 @@ This section is for setting up an **customer payment mechanism** to allow users 
 5.  Logging in using `admintemp` and added userprofile to existing users and the deleted `admintemp` userid.
 
 #### Creating Rating for products (part2)
+1. Changes where made to the following files
+    in ** accounts app **
+    `admin.py`
+    `model.py`
 
+    in ** products app **
+    `admin.py`
+    `model.py`
 
+    three things to test to make sure it's working as expected:
+
+    1) Can the same profile create ratings for two different products (should be yes) (DONE)
+    2) Can you create multiple ratings on the same product using different user profiles (should be yes) (DONE)
+    3) Can the same profile create two identical or different ratings on the same product (should be no) (DONE)
+
+2. Now need to figure out how to link this all together using buttons !!
+   going to setup a like and disliked icons for rating.
+    in ** products app **
+    `parts_cards.html`
+
+    in ** static **
+    `styles.css`
+    
+    in ** static\js **
+    `ratings.js` new 
+    

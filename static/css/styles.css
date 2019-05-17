@@ -264,6 +264,10 @@ p.card-footer {
    border: 1px solid #9b9797;
 }
 
+.btn-vote {
+  border-color: transparent;
+}
+
 /* CHANGE color on button hover */
 .btn-success:hover {
   border: 1px solid #9b9797; 
@@ -273,6 +277,14 @@ p.card-footer {
   border: 1px solid #9b9797; 
   color: black;
 }
+
+.btn-vote:hover {
+  color: black;
+  border-color: transparent;
+  background-color:transparent;
+}
+
+
 
 
 

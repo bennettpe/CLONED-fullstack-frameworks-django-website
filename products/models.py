@@ -18,7 +18,7 @@ class Product(models.Model):
     user_ratings = models.ManyToManyField(UserProfile, through='UserRating', related_name="ratings")
     
     def __str__(self):
-        return '{}: {} - {}'.format(self.category, self.part_name, self.part_number)
+        return '{}: {}- {}'.format(self.category, self.part_name, self.part_number)
     
 # Ratings
 class UserRating(models.Model):
@@ -26,8 +26,8 @@ class UserRating(models.Model):
         unique_together = ('product', 'user_profile')
     
     rating_choices = (
-        ('liked', 'Liked'),
-        ('disliked', 'Disliked')
+        ('disliked', 'Disliked'),
+        ('liked', 'Liked')
     )
        
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_ratings')
