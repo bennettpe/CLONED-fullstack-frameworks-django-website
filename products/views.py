@@ -3,6 +3,7 @@ from products.models import Product, UserRating
 from accounts.models import UserProfile
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.contrib import messages
 
 # Create your views here.
 def products(request):
@@ -280,5 +281,4 @@ def ratings(request):
             # Handle what happens if you cannot find the product or the profile (should never happen, but just in case)
             #else:
                 #success = False
-    #return HttpResponse({'success': success})
-    return HttpResponse('It worked!')
+    return HttpResponse({'success': success})

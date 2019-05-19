@@ -1,7 +1,8 @@
 // DISLIKED BUTTON
-$("#disliked-button").click(function(){
+$(".disliked-button").click(function(){
     console.log("Disliked button clicked!")
-    var partNumber = this.getAttribute('data-part-number');
+    $(this).addClass("disliked-button-clicked"); // Change color when button clicked
+    var partNumber = this.getAttribute('data-part-number'); 
     var token = this.getAttribute('data-token');
     var data = {
         part_number: partNumber,
@@ -17,8 +18,9 @@ $("#disliked-button").click(function(){
 })
 
 // LIKED BUTTON
-$("#liked-button").click(function(){
+$(".liked-button").click(function(){
     console.log("Liked button clicked!")
+    $(this).addClass("liked-button-clicked"); // Change color when button clicked
     var partNumber = this.getAttribute('data-part-number');
     var token = this.getAttribute('data-token');
     var data = {

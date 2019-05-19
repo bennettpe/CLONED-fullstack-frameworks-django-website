@@ -2259,6 +2259,7 @@ This section is for setting up an **customer payment mechanism** to allow users 
    going to setup a like and disliked icons for rating.
     in ** products app **
     `parts_cards.html`
+    `views.py`
 
     in ** static **
     `styles.css`
@@ -2266,3 +2267,6 @@ This section is for setting up an **customer payment mechanism** to allow users 
     in ** static\js **
     `ratings.js` new 
     
+#### Issue with only rating working on first card
+1. problem was due to using `id=` which would only pick up one element , so slack to the rescue and changed to `class=` and 
+   `#` to `.` in my javascript buttons and seems to work ok now.
