@@ -1,7 +1,7 @@
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render
-from products.models import Product, UserRating
+from products.models import Product, UserProfile, UserRating
 from checkout.models import OrderLineItem, Order
 from django.db.models import Count, Sum
 
@@ -263,10 +263,11 @@ def charts(request):
 		    	'groupPadding':0,
 		    	'pointPadding':0.1
 		    }
+		    
 		 },
 	}
 	
 	# Convert to JSON
 	dump4 = json.dumps(chart4)
-	
+	             
 	return render(request, 'charts.html', {'chart1': dump1, 'chart2': dump2, 'chart3': dump3, 'chart4': dump4})
