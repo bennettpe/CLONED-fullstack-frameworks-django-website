@@ -166,8 +166,6 @@ USE_TZ = True
 # STATICFILE_DIRS = # Look for static files here
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    
 STATIC_URL = '/static/'  
-#STATICFILES_LOCATION = 'static'
-#STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 
