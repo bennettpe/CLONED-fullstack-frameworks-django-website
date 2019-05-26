@@ -1,7 +1,7 @@
 # Fullstack Frameworks with Django Milestone 5 Project
 
 ## Classic Car Parts Webshop Triumphant Triumphs
-Heroku App:  <br>
+Heroku App: blaa <br>
 Heroku git:  <br>
 GitHub:      <br>
 
@@ -1723,7 +1723,7 @@ This section is for setting up an **customer payment mechanism** to allow users 
     Year: 2020
     ```
 
-#### Create contact app
+#### Create CONTACT app
 1. **Create** Django app called **contact** 
     ```python
     python3 manage.py startapp contact
@@ -1817,7 +1817,7 @@ This section is for setting up an **customer payment mechanism** to allow users 
 8. Create **contact.html** in templates folder
 9. Create **urls.py** **fullstack-frameworks-django-project/contact** 
 
-#### Create contact about
+#### Create ABOUT App
 1. **Create** Django app called **about** 
     ```python
     python3 manage.py startapp about
@@ -1850,7 +1850,6 @@ This section is for setting up an **customer payment mechanism** to allow users 
 8. Create templates folder in **fullstack-frameworks-django-project/about** 
 8. Create **about.html** in templates folder
 9. Create **urls.py** **fullstack-frameworks-django-project/about** 
-10. 
 
 
 #### Github vulnerablility message
