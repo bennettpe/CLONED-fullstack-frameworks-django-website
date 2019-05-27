@@ -275,7 +275,8 @@ def ratings(request):
                 new_liked = len(UserRating.objects.filter(product=product, rating='liked'))
                 new_disliked = len(UserRating.objects.filter(product=product, rating='disliked'))
                 success = True
-        
+                print("update rating")
+                
         # User has not rated this product yet so create a user rating      
         except UserRating.DoesNotExist:
             product = Product.objects.get(part_number = part_number)
@@ -286,6 +287,7 @@ def ratings(request):
                 new_liked = len(UserRating.objects.filter(product=product, rating='liked'))
                 new_disliked = len(UserRating.objects.filter(product=product, rating='disliked'))
                 success = True
+                print("create rating")
             
             # Handle what happens if you cannot find the product or the profile (should never happen, but just in case)
             else:

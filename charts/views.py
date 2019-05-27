@@ -3,7 +3,8 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render
 from products.models import Product, UserProfile, UserRating
 from checkout.models import OrderLineItem, Order
-from django.db.models import Count, Sum
+from django.db.models import Count
+from django.db.models.functions import Lower
 
 
 # Create your views here.
@@ -280,10 +281,9 @@ def charts(request):
 	#----------------------------
 	dataset4 = \
 	UserRating.objects.values('user_profile__user__username')\
-	    		 .order_by('user_profile__user__username')\
+	    		 .order_by(Lower('user_profile__user__username'))\
 	             .annotate(count=Count('user_profile__user__username'))
 	
-	# Create lists
 	rating = list()
 	count_series4 = list()
 	
@@ -341,5 +341,6 @@ def charts(request):
 	
 	# Convert to JSON
 	dump5 = json.dumps(chart5)
+	print(dump5)
 	
 	return render(request, 'charts.html', {'chart1': dump1, 'chart2': dump2, 'chart3': dump3, 'chart4': dump4, 'chart5': dump5})
