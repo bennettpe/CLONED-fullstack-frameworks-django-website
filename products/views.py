@@ -7,6 +7,60 @@ from django.contrib import messages
 
 import json
 
+#RATE PRODUCT 
+@login_required   
+def ratings(request):
+    if request.method == 'POST':
+        success = False
+        part_number = request.POST.get('part_number') # From JS var data
+        print(part_number)
+        button_clicked = request.POST.get('button')
+        print(button_clicked)
+        
+        # User has rated this product so update current rating
+        try:
+            current_rating = UserRating.objects.get(product__part_number = part_number, user_profile__user__username = request.user.username)
+            product = current_rating.product
+            print(product)
+            
+            if button_clicked in ['liked', 'disliked']:
+                current_rating.rating = button_clicked
+                current_rating.save()
+                new_liked = len(UserRating.objects.filter(product=product, rating='liked'))
+                print(new_liked)
+                new_disliked = len(UserRating.objects.filter(product=product, rating='disliked'))
+                print(new_disliked)
+                success = True
+                print("update rating")
+                
+        # User has not rated this product yet so create a user rating      
+        except UserRating.DoesNotExist:
+            product = Product.objects.get(part_number = part_number)
+            user_profile = UserProfile.objects.get(user = request.user)
+            
+            if product and user_profile:
+                UserRating.objects.create(product=product, user_profile=user_profile, rating=button_clicked)
+                new_liked = len(UserRating.objects.filter(product=product, rating='liked'))
+                print(new_liked)
+                new_disliked = len(UserRating.objects.filter(product=product, rating='disliked'))
+                print(new_disliked)
+                success = True
+                print("create rating")
+            
+            # Handle what happens if you cannot find the product or the profile (should never happen, but just in case)
+            else:
+                success = False
+                
+        response = {
+            'success': success,
+            'new_liked': new_liked,
+            'new_disliked': new_disliked
+        }
+        print(response)
+        return HttpResponse(json.dumps(response), content_type="application/json")
+        
+    raise Http404('Invalid Request Method')
+
 # Create your views here.
 def products(request):
     return render(request, 'categories.html')
@@ -253,52 +307,6 @@ def wshld_wipe_wash(request):
 #WIRING AND INTERNAL ELECTRICS
 def wire_int(request):
     return render(request, 'wire_int.html', 
-    {'products_list': Product.objects.filter(category='wire_int').order_by('part_name','part_number')})      
+    {'products_list': Product.objects.filter(category='wire_int').order_by('part_name','part_number')}) 
 
 
-#RATE PRODUCT 
-@login_required   
-def ratings(request):
-    if request.method == 'POST':
-        success = False
-        part_number = request.POST.get('part_number') # From JS var data
-        button_clicked = request.POST.get('button')
-        
-        # User has rated this product so update current rating
-        try:
-            current_rating = UserRating.objects.get(product__part_number = part_number, user_profile__user__username = request.user.username)
-            product = current_rating.product
-            
-            if button_clicked in ['liked', 'disliked']:
-                current_rating.rating = button_clicked
-                current_rating.save()
-                new_liked = len(UserRating.objects.filter(product=product, rating='liked'))
-                new_disliked = len(UserRating.objects.filter(product=product, rating='disliked'))
-                success = True
-                print("update rating")
-                
-        # User has not rated this product yet so create a user rating      
-        except UserRating.DoesNotExist:
-            product = Product.objects.get(part_number = part_number)
-            user_profile = UserProfile.objects.get(user = request.user)
-            
-            if product and user_profile:
-                UserRating.objects.create(product=product, user_profile=user_profile, rating=button_clicked)
-                new_liked = len(UserRating.objects.filter(product=product, rating='liked'))
-                new_disliked = len(UserRating.objects.filter(product=product, rating='disliked'))
-                success = True
-                print("create rating")
-            
-            # Handle what happens if you cannot find the product or the profile (should never happen, but just in case)
-            else:
-                success = False
-                
-        response = {
-            'success': success,
-            'new_liked': new_liked,
-            'new_disliked': new_disliked
-        }
-        
-        return HttpResponse(json.dumps(response), content_type="application/json")
-        
-    raise Http404('Invalid Request Method')

@@ -23,20 +23,24 @@
             <!-- Javascript buttons pass (product.part_number & csrf_token) ---> 
             <div class="card-footer text-center">
                     <button data-part-number={{ product.part_number }} data-token="{{ csrf_token }}"
-                    class="btn disliked-button" data-toggle="tooltip" title="Vote disliked">
+                        id ="b-{{forloop.counter}}"
+                        class="btn disliked-button" data-toggle="tooltip" title="Vote disliked">
+                        
                         <!-- Diskliked votes ---> 
-				        <span id="prod-disliked">
-    			            {% get_disliked product.id %}
+				        <span id="bb-{{forloop.counter}}">
+    			             {% get_disliked product.id %} 
     			        </span>
 				        <i class="fas fa-thumbs-down fa-2x"></i>
 			        </button>
-			        
+			         
                    <button data-part-number="{{ product.part_number }}" data-token="{{ csrf_token }}"
-                    class="btn liked-button" data-toggle="tooltip" title="Vote liked">
+                        id ="a-{{forloop.counter}}"
+                        class="btn liked-button" data-toggle="tooltip" title="Vote liked">
 				        <i class="fas fa-thumbs-up fa-2x"></i>
+				        
 				        <!-- Liked votes ---> 
-				        <span id="prod-liked">
-    			            {% get_liked product.id %}
+				        <span id="aa-{{forloop.counter}}">
+    			             {% get_liked product.id %} 
     			        </span>
 			        </button>
 			        
