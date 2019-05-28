@@ -341,6 +341,5 @@ def charts(request):
 	
 	# Convert to JSON
 	dump5 = json.dumps(chart5)
-	print(dump5)
 	
 	return render(request, 'charts.html', {'chart1': dump1, 'chart2': dump2, 'chart3': dump3, 'chart4': dump4, 'chart5': dump5})

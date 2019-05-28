@@ -280,9 +280,15 @@ p.card-footer {
   background-color:transparent;
 }
 
-#prod-disliked,
-#prod-liked {
+/* Change colour of rating num */
+.disliked_num,
+.liked_num {
   color: black;  
+}
+
+/* Remove button shadow */
+.btn:focus {
+  box-shadow: none;
 }
 
 /* CHANGE color on button hover */

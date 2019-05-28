@@ -25,12 +25,12 @@
                     <button data-part-number={{ product.part_number }} data-token="{{ csrf_token }}"
                         id ="b-{{forloop.counter}}"
                         class="btn disliked-button" data-toggle="tooltip" title="Vote disliked">
+                        <i class="fas fa-thumbs-down fa-2x"></i>
                         
                         <!-- Diskliked votes ---> 
-				        <span id="bb-{{forloop.counter}}">
+				        <span id="bb-{{forloop.counter}}" class="disliked_num">
     			             {% get_disliked product.id %} 
     			        </span>
-				        <i class="fas fa-thumbs-down fa-2x"></i>
 			        </button>
 			         
                    <button data-part-number="{{ product.part_number }}" data-token="{{ csrf_token }}"
@@ -39,7 +39,7 @@
 				        <i class="fas fa-thumbs-up fa-2x"></i>
 				        
 				        <!-- Liked votes ---> 
-				        <span id="aa-{{forloop.counter}}">
+				        <span id="aa-{{forloop.counter}}" class="liked_num">
     			             {% get_liked product.id %} 
     			        </span>
 			        </button>
