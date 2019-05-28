@@ -1,4 +1,3 @@
-//
 // I would like to thank fellow stident John Longgately (johnL3_alumni on slack) for helping 
 //   me with a solution to making button id's unique per parts card.
 //
