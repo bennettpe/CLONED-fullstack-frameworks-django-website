@@ -45,7 +45,7 @@ class UserRegistrationForm(UserCreationForm):
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
         
-        if len(password1) < 8 or len(password1) > 20:
+        if not 8 <= len(password1) <= 20:
             raise ValidationError("Invalid Password, must contain between 8 and 20 characters")
         return password1
         
