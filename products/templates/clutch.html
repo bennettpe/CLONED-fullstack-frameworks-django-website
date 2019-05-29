@@ -1,19 +1,16 @@
-{{% extends 'base.html' %} 
+{% extends 'base.html' %} 
 {% load static %} 
 
 {% block content %}
  <!-- CLUTCH -->
 <div class="container clutch-container">
     <ol class="breadcrumb bcrumb-margins">
-        <li class="breadcrumb-item">
-            <a href="{% url 'index' %}"> <i class="fas fa-home fa-lg"></i> </a>
-        </li>
+        <li class="breadcrumb-item"> <a href="{% url 'index' %}"> <i class="fas fa-home fa-lg"></i> </a></li>
         <li class="breadcrumb-item"> <a href="{% url 'products' %}"> Products </a></li>
         <li class="breadcrumb-item active"> Clutch </li>
-        <li class="breadcrumb-item"> <a href="{% url 'gearbox' %}"> Gearbox </a></li>
-        <li class="breadcrumb-item"> <a href="{% url 'overdrive' %}"> Overdrive </a></li>
-    </ol>
-
+        <li class="breadcrumb-item"> <a href="{% url 'gearbox' %}"> Gearbox</a></li>
+        <li class="breadcrumb-item"> <a href="{% url 'overdrive' %}"> Overdrive</a></li>
+    </ol>   
     <!-- Parts Heading -->
     <h2 class="pl-4 pr-4"> Clutch </h2>
     <br>

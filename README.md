@@ -185,7 +185,7 @@ Make sure once the workspace has been created in Cloud9 you create the following
 4. Create `.gitignore` and `README.md` files 
 
 5. Create `requirements.txt` file <br>
-   ```python
+   ```bash
    sudo pip freeze --local > requirements.txt
    ```
    output from bash terminal
@@ -265,7 +265,7 @@ Make sure once the workspace has been created in Cloud9 you create the following
    Cleaning up...    
    ```
 10.  Create `requirements.txt` file <br>
-   ```python
+   ```bash
    sudo pip freeze --local > requirements.txt
    ```
    output from bash terminal
@@ -489,7 +489,7 @@ This section is for setting up an **authentication mechanism** to allow users to
 
 5. Create a **templates** folder in the **accounts** app <br>
    Create a new file called **index.html**
-   ```python
+   ```html
    <!DOCTYPE html>
     <html>
         <head>
@@ -761,7 +761,7 @@ This section is for setting up an **authentication mechanism** to allow users to
     ```
 
     add
-    ```python
+    ```bash
     from django.contrib.auth.decorators import login_required
     
     @login_required <== add this line
@@ -832,7 +832,7 @@ This section is for setting up an **authentication mechanism** to allow users to
 #### Password Reset Templates
 1.  Create new folder **registration** in **fullstack-frameworks-django-project/templates/** <br>
     Create new file   **password_reset_form.html** in **fullstack-frameworks-django-project/templates/registration**
-    ```python
+    ```html
      <!--Password Reset Form --> 
 
     {% extends 'base.html' %}
@@ -957,7 +957,7 @@ Step 03 - Django-forms-bootstrap, Static files, Install Travis, Stripe.
    ```
 
 3.  Update `requirements.txt` file <br>
-   ```python
+   ```bash
    sudo pip freeze --local > requirements.txt
    ```
    output from bash terminal
@@ -1096,7 +1096,7 @@ Step 03 - Django-forms-bootstrap, Static files, Install Travis, Stripe.
     ```
     
 2.  Update `requirements.txt` file <br>
-   ```python
+   ```bash
    sudo pip3 freeze --local > requirements.txt
    ```
    output from bash terminal
@@ -1265,7 +1265,7 @@ This section is for setting up an **products** to allow users ability to select 
     ```
     
 6. Update `requirements.txt` file <br>
-    ```python
+    ```bash
     sudo pip3 freeze --local > requirements.txt
     ```
 
@@ -1892,11 +1892,10 @@ This section is for setting up an **customer payment mechanism** to allow users 
 
 4. Update file **base.html** in <i>fullstack-frameworks-django-project/checkout/templates</i> <br>
    to include stripe js in head section
-    ```python 
+    ```html
     <!-- STRIPE -->          <== add this section
     {% block head_js %}
     {% endblock head_js %}
-    </head>
     ```
 
 #### Create javascript for Stripe
@@ -1978,7 +1977,7 @@ Step 06 - CONTACT App
     ```
     
 4. Update `requirements.txt` file <br>
-    ```python
+    ```bash
     sudo pip3 freeze --local > requirements.txt
     ```
 
@@ -2026,7 +2025,7 @@ Step 07 - ABOUT App
     ```
  
      ouput from bash terminal
-    ```python
+    ```bash
     bennettpe:~/workspace (master) $ python3 manage.py startapp about 
     ```
     
@@ -2091,7 +2090,7 @@ Step 09 - Adding S3 to Django
     ```
     
 2. Update `requirements.txt` file <br>
-    ```python
+    ```bash
     sudo pip3 freeze --local > requirements.txt
     ```
 
@@ -2127,7 +2126,7 @@ Step 09 - Adding S3 to Django
     ```
     
 4. Update `requirements.txt` file <br>
-    ```python
+    ```bash
     sudo pip3 freeze --local > requirements.txt
     ``` 
 
@@ -2667,7 +2666,7 @@ Listed below are some of the issues I have had building the website , but they h
     ```
 
 3.  Update `requirements.txt` file <br>
-    ```python
+    ```bash
     sudo pip3 freeze --local > requirements.txt
     ```
 
@@ -2731,7 +2730,7 @@ Listed below are some of the issues I have had building the website , but they h
     
 issue was due to background url not being correct , should have been 
 
-```css
+```bash
     background: url("../img/vehicles/Triumph_Spitfire_MKIV_colors.svg") no-repeat center; 
 ```
 
@@ -2808,7 +2807,7 @@ Diagram of website database schema
 4. Button code in `parts_cards.html` was 
 
 Changed from this
-```python
+```html
     <button data-part-number={{ product.part_number }} data-token="{{ csrf_token }}"
         class="disliked-button btn btn-outline-danger" data-toggle="tooltip" title="Vote disliked">
             <!-- Diskliked votes ---> 
@@ -2828,7 +2827,7 @@ Changed from this
     </button>
 ```
 To this
-```python
+```html
     <button data-part-number={{ product.part_number }} data-token="{{ csrf_token }}"
         id ="b-{{forloop.counter}}"
         class="btn disliked-button" data-toggle="tooltip" title="Vote disliked">

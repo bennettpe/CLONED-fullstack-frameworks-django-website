@@ -1,10 +1,12 @@
 #Form for users to register
 
 from django import forms
+# you need to add this line below if you have extended user model so it 
+# picks up password validation settings in settings.py
+from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-
 
 class UserLoginForm(forms.Form):
     """Form Used to log users in """
@@ -45,14 +47,20 @@ class UserRegistrationForm(UserCreationForm):
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
         
-        if not 8 <= len(password1) <= 20:
-            raise ValidationError("Invalid Password, must contain between 8 and 20 characters")
+        password_validation.validate_password(
+           self.cleaned_data['password1'],
+           self.instance)
+        
         return password1
         
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
         
+        password_validation.validate_password(
+           self.cleaned_data['password2'],
+           self.instance)
+           
         if not password1 or not password2:
             raise ValidationError("Password must not be empty")
             
